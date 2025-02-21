@@ -1,10 +1,11 @@
-import * as THREE from './libs/three/three.module.js';
-import { GLTFLoader } from './libs/three/GLTFLoader.js';
-import { OrbitControls } from './libs/three/OrbitControls.js';
-import { EffectComposer } from './libs/three/EffectComposer.js';
-import { RenderPass } from './libs/three/RenderPass.js';
-import { SSAOPass } from './libs/three/SSAOPass.js';
-import TWEEN from './libs/tween/dist/tween.esm.js';
+import * as THREE from './node_modules/three/build/three.module.js';
+import { GLTFLoader } from './GLTFLoader.js';
+import { OrbitControls } from './node_modules/three/examples/jsm/controls/OrbitControls.js';
+import { EffectComposer } from './node_modules/three/examples/jsm/postprocessing/EffectComposer.js';
+import { RenderPass } from './node_modules/three/examples/jsm/postprocessing/RenderPass.js';
+import { SSAOPass } from './node_modules/three/examples/jsm/postprocessing/SSAOPass.js';
+import TWEEN from './node_modules/@tweenjs/tween.js/dist/tween.esm.js';
+
 
 console.log("Script loaded");
 
@@ -386,8 +387,6 @@ slider.addEventListener('input', (event) => {
 });
     
   }
-
-
    
 }, 
 
