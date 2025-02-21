@@ -1,10 +1,10 @@
-import * as THREE from './node_modules/three/build/three.module.js';
-import { GLTFLoader } from './GLTFLoader.js';
-import { OrbitControls } from './node_modules/three/examples/jsm/controls/OrbitControls.js';
-import { EffectComposer } from './node_modules/three/examples/jsm/postprocessing/EffectComposer.js';
-import { RenderPass } from './node_modules/three/examples/jsm/postprocessing/RenderPass.js';
-import { SSAOPass } from './node_modules/three/examples/jsm/postprocessing/SSAOPass.js';
-import TWEEN from './node_modules/@tweenjs/tween.js/dist/tween.esm.js';
+import * as THREE from "./libs/three/build/three.module.js";
+import { GLTFLoader } from "./libs/three/examples/jsm/loaders/GLTFLoader.js";
+import { OrbitControls } from "./libs/three/examples/jsm/controls/OrbitControls.js";
+import { EffectComposer } from "./libs/three/examples/jsm/postprocessing/EffectComposer.js";
+import { RenderPass } from "./libs/three/examples/jsm/postprocessing/RenderPass.js";
+import { SSAOPass } from "./libs/three/examples/jsm/postprocessing/SSAOPass.js";
+import TWEEN from "./libs/three/tween.js/dist/tween.esm.js";
 
 
 console.log("Script loaded");
