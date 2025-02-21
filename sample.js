@@ -1,11 +1,10 @@
-import * as THREE from "./libs/three/build/three.module.js";
-import { GLTFLoader } from "./libs/three/examples/jsm/loaders/GLTFLoader.js";
-import { OrbitControls } from "./libs/three/examples/jsm/controls/OrbitControls.js";
-import { EffectComposer } from "./libs/three/examples/jsm/postprocessing/EffectComposer.js";
-import { RenderPass } from "./libs/three/examples/jsm/postprocessing/RenderPass.js";
-import { SSAOPass } from "./libs/three/examples/jsm/postprocessing/SSAOPass.js";
-import TWEEN from "./libs/three/tween.js/dist/tween.esm.js";
-
+import * as THREE from './libs/three/three.module.js';
+import { GLTFLoader } from './libs/three/GLTFLoader.js';
+import { OrbitControls } from './libs/three/OrbitControls.js';
+import { EffectComposer } from './libs/three/EffectComposer.js';
+import { RenderPass } from './libs/three/RenderPass.js';
+import { SSAOPass } from './libs/three/SSAOPass.js';
+import TWEEN from './libs/tween/dist/tween.esm.js';
 
 console.log("Script loaded");
 
@@ -387,6 +386,8 @@ slider.addEventListener('input', (event) => {
 });
     
   }
+
+
    
 }, 
 
@@ -410,7 +411,6 @@ controls.target.set(0, 0, 6);
 controls.maxDistance = 8; // Adjust as needed
 controls.minPolarAngle =-2;  // Prevent looking too far down
 controls.maxPolarAngle = Math.PI /2;  // Prevent looking up too high
-
 
 // Raycasting setup for walking (collision detection)
 const raycaster = new THREE.Raycaster();
