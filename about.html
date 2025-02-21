@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shore Temple 3D & VR Experience</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body bgcolor="#fefefe">
+  <!-- Header Section -->
+<header>
+  <div class="navbar">
+      <span class="logo">TANCAM <br> Shore Temple Exploration</span>
+      <button class="menu-toggle" aria-label="Menu toggle">&#9776;</button> <!-- Hamburger Icon -->
+      <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="vr.html">Launch Experience</a></li>
+          <li><a href="about.html">About</a></li>
+      </ul>
+  </div>
+</header>
+
+<script>
+    // Select the toggle button and navigation links
+    const toggleButton = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    
+    // Toggle menu visibility on button click
+    toggleButton.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+</script>
+
+
+     <!-- Hero Section -->
+     <section id="hero" class="hero">
+        <img src="images/about.jpg" alt="Shore Temple" class="hero-image">
+        <div class="hero-content">
+            <h1>About Us</h1>
+            <p>We are dedicated to preserving the cultural heritage of the Shore Temple and providing virtual access to this iconic landmark for a global audience</p><br>
+            <a href="#about" class="explore-button">Discover Why</a>
+        </div>
+    </section>
+
+      <!-- why shore temple -->
+      <section id="about" class="about">
+        <div class="about-content">
+            <h2>Why Shore temple?</h2>
+            <p>The Shore Temple, a renowned UNESCO World Heritage Site, epitomizes India's architectural brilliance and serves as the first structural temple constructed on the seashore. The temple's vimana is constructed following Dravidian architecture, which is known for its pyramidal structures and ornate designs. Commissioned in the 7th century C.E. by the Pallava monarch Narasimhavarman II, it majestically overlooks the Bay of Bengal at 12.6269°N latitude and 80.1927°E longitude in the historic town of Mamallapuram, Tamil Nadu.
+
+                Constructed from Precambrian rock, the Shore Temple stands unwaveringly on bedrock, a striking example of advanced engineering that negates the need for mortar or interlocking stones. This ingenious construction method exemplifies the high level of craftsmanship employed by its creators. Literary references to the temple trace back to the 8th century C.E., when the saint Thirumangaialwar in his verses famously alluded to the site as Kadal Mallai, emphasizing its deep cultural significance. In the 17th century C.E., the European traveler Mannucci coined the term "The Seven Pagodas" to describe Mamallapuram, captivated by the monument's grandeur and the surrounding architectural landscape.
+                
+                Inscriptions in the Pallava-Grantha script can be found in the temple, providing invaluable insight into the region's scriptural and linguistic heritage during the Pallava era. Furthermore, archaeological evidence of Roman trade connections is demonstrated through the discovery of coins of Emperor Theodosius (4th century C.E.), suggesting Mamallapuram as a focal point of ancient trade and cultural exchanges. Additionally, the court poet Dandin documented the expertise of an artist named Lalitaya, who invited King Rajasimha to observe the meticulous restoration of Vishnu’s forearm—a testimony to India's early engagement with scientific sculptural conservation.
+                
+                The Shore Temple not only serves as a monument to India's architectural ingenuity but also encapsulates the cultural and historical richness that defined the Pallava period. Its impeccable craftsmanship, historical significance, and artistic legacy make it an ideal subject of study, cementing its place as a cornerstone of India's heritage and a remarkable testament to ancient engineering and conservation practices.
+                .</p>
+         
+        </div>
+        <img src="images/ancient.jpg" alt="About Shore Temple">
+        
+    </section>
+    <!-- Key component -->
+    <section class="key-components">
+        <h2 class="key-components-title">Key Components</h2>
+        <div class="component-container">
+            <!-- 3D Exploration -->
+            <div class="component-box">
+                <img src="images/3d.jpg" alt="3D Exploration Icon" class="component-icon">
+                <h3>3D Exploration</h3>
+                <p>Dive into a detailed 3D exploration of iconic monuments and structures. View intricate carvings, analyze architecture, and interact with the models at your convenience. Learn history in an engaging way through vivid 3D renditions.</p>
+            </div>
+            <!-- VR Experience -->
+            <div class="component-box">
+                <img src="images/vr.jpg" alt="VR Experience Icon" class="component-icon">
+                <h3>VR experience</h3>
+                <p>Immerse yourself in a virtual journey through historical monuments from the comfort of your space. Accessible across multiple devices, this VR experience offers a realistic and interactive approach to cultural exploration.</p>
+            </div>
+            <!-- Parametric -->
+            <div class="component-box">
+                <img src="images/pmetric.jpg" alt="Parametric Icon" class="component-icon">
+                <h3>Parametric</h3>
+                <p>Understand the architectural evolution through parametric representations. Witness how structures are mathematically defined and brought to life, showcasing design principles and logic like never before.</p>
+            </div>
+        </div>
+    </section>
+    
+      <!-- Footer Section -->
+      <footer>
+        <p>&copy; 2024 Shore Temple Experience </p>
+    </footer>
+</body>
+</html>
+

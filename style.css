@@ -1,0 +1,394 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+html {
+    scroll-behavior: smooth;
+}
+
+/* Body and Overall Container */
+body {
+    line-height: 1.6;
+    
+}
+header {
+    background-color: #2c4b34; /* Same background across all pages */
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Ensures header stays above other elements */
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fefefe;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #fefefe;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.nav-links li a:hover {
+    color: #0056b3;
+}
+
+/* Menu Toggle Button (Visible in Mobile View) */
+.menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Dropdown Menu for Mobile */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: #2c4b34;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        padding: 1rem;
+        text-align: center;
+        z-index: 1000; /* Ensures dropdown is on top */
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+}
+/* Hero Section */
+.hero {
+    position: relative;
+    text-align: center;
+    color: #fff;
+}
+
+.hero-image {
+    width: 100%;
+    height: 90vh;
+    object-fit: cover;
+    filter: brightness(0.7); /* Adds overlay effect */
+}
+
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.hero-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+
+/* Main Feature Section */
+.feature {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 1.5rem;
+    padding: 2rem;
+    margin: 3rem auto;
+    max-width: 1200px; /* Constrain the section width */
+}
+
+/* Feature Box Styling */
+.feature-box {
+    position: relative; /* For any absolute elements */
+    text-align: center; /* Center content */
+    background-color: #2c4b34;
+    color: #fff;
+    border-radius: 12px; /* Smooth corners */
+    padding: 2rem;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s, box-shadow 0.4s;
+    overflow: hidden;
+}
+
+/* Hover Effects */
+.feature-box:hover {
+    transform: translateY(-10px) scale(1.05); /* Elevate on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Content within Feature Box */
+.feature-box h2 {
+    font-size: 1.8rem;
+    color: #ffdc62; /* Accent color */
+    margin-bottom: 1rem;
+}
+
+.feature-box p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #f0f0f0;
+    margin-bottom: 1.5rem;
+}
+
+.explore-button {
+    display: inline-block;
+    background-color: #ffdc62;
+    color: #000;
+    padding: 0.8rem 1.6rem;
+    font-weight: bold;
+    border-radius: 25px;
+    border: none;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.explore-button:hover {
+    background-color: #ffd742; /* Slight hover brightness */
+}
+
+.feature-icon {
+    width: 50px;
+    position: center;
+    top: 20px;
+    left: 20px;
+    opacity: 0.8;
+}
+
+/* About Section */
+.about {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fefefe;
+    margin: 2rem auto;
+    max-width: 1200px;
+    padding: 1.5rem;
+    gap: 2rem;
+}
+
+.about-content {
+    flex: 1;
+}
+
+.about-content h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.about-content p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.read-more {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    color: #0056b3;
+    font-weight: bold;
+    text-decoration: none;
+    border-bottom: 2px solid #0056b3;
+}
+
+.read-more:hover {
+    color: #003366;
+    border-bottom-color: #003366;
+}
+
+.about img {
+    width: 40%;
+    border-radius: 8px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+    font-size: 0.9rem;
+    margin-top: 1.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    /* Navigation */
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .nav-links {
+        flex-direction: column;
+    }
+
+    /* Hero Section */
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    /* Features Section */
+    .feature {
+        padding: 1.5rem; /* Reduce overall spacing */
+    }
+
+    .feature-box {
+        padding: 1.5rem;
+    }
+
+    .feature-box h2 {
+        font-size: 1.5rem; /* Slightly reduce header size */
+    }
+
+    .feature-box p {
+        font-size: 0.9rem; /* Slightly reduce paragraph font size */
+    }
+
+    .explore-button {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem; /* Adjust button size */
+    }
+
+    .feature-icon {
+        width: 40px; /* Shrink the icon */
+        top: auto; /* Remove absolute positioning */
+        left: auto;
+        position: relative; /* Relative to parent container */
+        margin: 0 auto 1rem; /* Center the icon above the heading */
+    }
+
+    /* About Section */
+    .about {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about img {
+        width: 80%;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-content p {
+        font-size: 0.9rem;
+    }
+
+    .nav-links li a {
+        font-size: 0.9rem;
+    }
+}
+/* Key Components Section */
+.key-components {
+    background-color:  #96897c; /* background matching your style */
+    padding: 3rem 1rem;
+    text-align: center;
+}
+
+.key-components-title {
+    font-size: 2rem;
+    color: #f2f2f2;
+    margin-bottom: 2rem;
+}
+
+/* Container for Boxes */
+.component-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+/* Individual Boxes */
+.component-box {
+    background-color: #fefefe;
+    border: 2px #9d8d7d; /* border */
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    width: 25%; /* Adjust based on screen size */
+    max-width: 300px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.component-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Icons Inside Boxes */
+.component-icon {
+    width: 80px; /* Adjust for proper scaling */
+    height: 80px;
+    margin-bottom: 1rem;
+    background-color: #2c4b34; /* Dark green background */
+    padding: 10px;
+    border-radius: 50%; /* Makes the icon background circular */
+}
+
+/* Headings Inside Boxes */
+.component-box h3 {
+    font-size: 1.2rem;
+    color: #333;
+    margin: 1rem 0;
+}
+
+/* Paragraph Text */
+.component-box p {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .component-box {
+        width: 45%; /* Two columns layout */
+    }
+}
+
+@media (max-width: 480px) {
+    .component-box {
+        width: 90%; /* Full width for small screens */
+    }
+}
