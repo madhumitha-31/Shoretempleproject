@@ -168,6 +168,7 @@ loader.load(
     box.getCenter(center);
     model.position.sub(center);
 
+    if(!isMobile()){
     function createClickableHTMLPoint(point, model, infoTitle, infoText) {
       // Create HTML div for the clickable point
       const div = document.createElement("div");
@@ -312,7 +313,7 @@ function moveCameraToPoint(targetPoint) {
       renderer.render(scene, camera);
       updateAllPoints();
   });  
-     
+}
     if (!isMobile()) {
      // Load PBR textures
      const albedoMap = textureLoader.load('./assets/FFG.jpg');  // Base color (diffuse)
@@ -405,12 +406,13 @@ controls.dampingFactor = 0.05;
 controls.enableZoom = true;
 controls.enableRotate = true;
 controls.enablePan = false;
+if(!isMobile()){
 // Set the point to rotate around (Example: Object at (0, 5, 0))
 controls.target.set(0, 0, 6);
 controls.maxDistance = 8; // Adjust as needed
 controls.minPolarAngle =-2;  // Prevent looking too far down
 controls.maxPolarAngle = Math.PI /2;  // Prevent looking up too high
-
+}
 // Raycasting setup for walking (collision detection)
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
@@ -476,7 +478,7 @@ const adjustedCameraPosition = camera.position.clone().add(direction.multiplySca
   }
 );
 
-
+if(!isMobile()){
  //button feature
  const featurePositions = {
   p1: {
@@ -524,7 +526,7 @@ document.getElementById('p2').addEventListener('click', () => {
   moveToFeature('p2');
 });
 
-
+}
 // Animation loop 
 function animate() {
   tweenGroup.update();
