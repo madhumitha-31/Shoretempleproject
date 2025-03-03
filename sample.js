@@ -456,10 +456,13 @@ slider.addEventListener('input', (event) => {
 }, 
 
   function (xhr) {
-    console.log((xhr.loaded / xhr.total) * 100 + '% loaded');
-    let percent = Math.round((xhr.loaded / xhr.total) * 100);
-    document.getElementById("progress").style.width = percent + "%";
-    document.getElementById("progress-text").innerText = percent + "% loaded";
+    if (xhr.lengthComputable) { // Ensure progress can be calculated
+      let percent = Math.round((xhr.loaded / xhr.total) * 100);
+      document.getElementById("progress").style.width = percent + "%";
+      document.getElementById("progress-text").innerText = percent + "% loaded";
+    } else {
+      document.getElementById("progress-text").innerText = "Loading...";
+    }
   },
   function (error) {
     console.error('An error occurred while loading the model:', error);
