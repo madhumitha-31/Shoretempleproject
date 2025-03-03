@@ -1,6 +1,18 @@
 {
   "dependencies": {
     "@tweenjs/tween.js": "^25.0.0",
+    "firebase": "^11.3.1",
     "three": "^0.172.0"
-  }
+  },
+  "name": "shore-temple-project",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "GLTFLoader.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

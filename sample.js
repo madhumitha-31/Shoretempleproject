@@ -5,6 +5,41 @@ import { EffectComposer } from './libs/three/jsm/postprocessing/EffectComposer.j
 import { RenderPass } from './libs/three/jsm/postprocessing/RenderPass.js';
 import { SSAOPass } from './libs/three/jsm/postprocessing/SSAOPass.js';
 import TWEEN from './libs/tween/tween.esm.js';
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc  } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+import { app } from './firebase-config.js';  // Import initialized app
+
+const db = getFirestore(app);
+// Reference to your collection
+const collectionRef = collection(db, 'user-interactions');
+
+async function deleteAllDocuments() {
+  try {
+    const querySnapshot = await getDocs(collectionRef);
+    querySnapshot.forEach(async (document) => {
+      await deleteDoc(doc(db, 'user-interactions', document.id));
+      console.log(`Deleted document: ${document.id}`);
+    });
+    console.log('All documents deleted');
+  } catch (error) {
+    console.error('Error deleting documents: ', error);
+  }
+}
+
+// Call the function to delete all documents
+deleteAllDocuments();
+// Function to log user interactions
+async function logInteraction(action) {
+  try {
+    await addDoc(collection(db, "user_interactions"), {
+      action: action,
+      timestamp: new Date()
+    });
+    console.log("Interaction logged:", action);
+  } catch (e) {
+    console.error("Error logging interaction:", e);
+  }
+}
 
 
 console.log("Script loaded");
@@ -119,15 +154,17 @@ renderer.setPixelRatio(window.devicePixelRatio);
 scene.fog = new THREE.Fog(0xD1E8E2, 0, 120);  // Light fog, mimicking coastal humidity 
 
 // Zoom functionality
-let zoomSpeed = 0.1;  // Speed of zooming
-let minZoom = 0.1;      // Minimum camera distance
+let zoomSpeed = 0.5;  // Speed of zooming
+let minZoom = 0;      // Minimum camera distance
 let maxZoom = 5;      // Maximum camera distance
 
 window.addEventListener('wheel', (event) => {
   if (event.deltaY < 0) {
     camera.position.z -= zoomSpeed;  // Zoom in
+    logInteraction("Zoom", "Zoomed In");
   } else {
     camera.position.z += zoomSpeed;  // Zoom out
+    logInteraction("Zoom", "Zoomed Out");
   }
   // Reduce maxZoom to set the limit closer
   camera.position.z = Math.max(minZoom, Math.min(maxZoom, camera.position.z));
@@ -147,6 +184,30 @@ function isMobile() {
 // Clipping Plane (Initially at Y = 0)
 const plane = new THREE.Plane(new THREE.Vector3(0, -1, 0), 10); // Cutting through Y-axis
 
+// Create Loading Screen
+const loadingScreen = document.createElement("div");
+loadingScreen.style.position = "fixed";
+loadingScreen.style.top = "0";
+loadingScreen.style.left = "0";
+loadingScreen.style.width = "100%";
+loadingScreen.style.height = "100%";
+loadingScreen.style.background = "rgba(0, 0, 0, 0.8)";
+loadingScreen.style.display = "flex";
+loadingScreen.style.alignItems = "center";
+loadingScreen.style.justifyContent = "center";
+loadingScreen.style.color = "#fff";
+loadingScreen.style.fontSize = "20px";
+loadingScreen.innerHTML = `
+    <div style="text-align:center;">
+        <p>Loading Model...</p>
+        <div style="width: 300px; height: 20px; background: #444; border-radius: 10px; overflow: hidden;">
+            <div id="progress" style="width: 0%; height: 100%; background: green;"></div>
+        </div>
+        <p id="progress-text">0% loaded</p>
+    </div>
+`;
+document.body.appendChild(loadingScreen);
+
 // Load 3D model
 const loader = new GLTFLoader();
 const textureLoader = new THREE.TextureLoader();
@@ -157,6 +218,7 @@ loader.load(
     const model = gltf.scene;
     scene.add(model);
     console.log("Model loaded successfully", isMobile() ? "Mobile Model" : "Desktop Model");
+    loadingScreen.style.display = "none"; // Hide loading screen
 
     // Adjust model position and scale
     model.position.set(0, 0, 0);
@@ -232,6 +294,7 @@ loader.load(
           event.stopPropagation(); // Prevent hiding on global click
           infoBox.style.display = "block";
           moveCameraToPoint(point);
+          logInteraction("Hotspot", `Clicked: ${infoTitle}`);
       });
   
       // Hide info box when clicking anywhere else
@@ -371,9 +434,9 @@ function moveCameraToPoint(targetPoint) {
     const slider = document.createElement('input');
     slider.type = "range";
     slider.min = "-1";
-    slider.max = "4";
+    slider.max = "3";
     slider.step = "0.01";
-    slider.value = "4";
+    slider.value = "3";
     slider.style.position = "absolute";
     slider.style.bottom = "10px";
     slider.style.left = "50%";
@@ -385,6 +448,7 @@ function moveCameraToPoint(targetPoint) {
 slider.addEventListener('input', (event) => {
   const value = parseFloat(event.target.value);
   plane.constant = value;
+   logInteraction("Clipping Feature", "Adjusted Clipping Plane");
 });
     
   }
@@ -393,6 +457,9 @@ slider.addEventListener('input', (event) => {
 
   function (xhr) {
     console.log((xhr.loaded / xhr.total) * 100 + '% loaded');
+    let percent = Math.round((xhr.loaded / xhr.total) * 100);
+    document.getElementById("progress").style.width = percent + "%";
+    document.getElementById("progress-text").innerText = percent + "% loaded";
   },
   function (error) {
     console.error('An error occurred while loading the model:', error);
@@ -413,12 +480,16 @@ controls.maxDistance = 8; // Adjust as needed
 controls.minPolarAngle =-2;  // Prevent looking too far down
 controls.maxPolarAngle = Math.PI /2;  // Prevent looking up too high
 }
+/* controls.addEventListener("change", () => {
+  logInteraction("Orbit Controls", "Rotated Model or Moved Camera");
+}); */
 // Raycasting setup for walking (collision detection)
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 const tweenGroup = new TWEEN.Group();
 
 document.addEventListener('dblclick', (event) => {
+  logInteraction("Walkthrough", "User moved through the scene");
   mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
@@ -520,10 +591,12 @@ function moveToFeature(feature) {
 
 document.getElementById('p1').addEventListener('click', () => {
   moveToFeature('p1');
+  logInteraction("Feature Navigation", "Clicked P1 Button");
 });
 
 document.getElementById('p2').addEventListener('click', () => {
   moveToFeature('p2');
+  logInteraction("Feature Navigation", "Clicked P2 Button");
 });
 
 }
