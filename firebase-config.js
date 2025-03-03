@@ -5,12 +5,12 @@
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDERID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  apiKey: "AIzaSyALR4gcsmbDY492xPAKwRxDOTzyFPTYIME",
+  authDomain: "shoretempleapp.firebaseapp.com",
+  projectId: "shoretempleapp",
+  storageBucket: "shoretempleapp.firebasestorage.app",
+  messagingSenderId: "473036972586",
+  appId: "1:473036972586:web:ffdca8dd4c5a8a53301953"
 };
 
 // Initialize Firebase only if not already initialized
